@@ -1,22 +1,22 @@
-[![Slack](http://alansouzati.github.io/artic/img/slack-badge.svg)](http://slackin.grommet.io)  [![Build Status](https://travis-ci.org/grommet/grommet-form.svg?branch=master)](https://travis-ci.org/grommet/grommet-form) [![Test Coverage](https://codeclimate.com/github/grommet/grommet-form/badges/coverage.svg)](https://codeclimate.com/github/grommet/grommet-form/coverage)  [![Dependency Status](https://david-dm.org/grommet/grommet-form.svg)](https://david-dm.org/grommet/grommet-form) [![devDependency Status](https://david-dm.org/grommet/grommet-form/dev-status.svg)](https://david-dm.org/grommet/grommet-form#info=devDependencies)
+[![Slack](http://alansouzati.github.io/artic/img/slack-badge.svg)](http://slackin.grommet.io)  [![Build Status](https://travis-ci.org/grommet/react-formify.svg?branch=master)](https://travis-ci.org/grommet/react-formify) [![Test Coverage](https://codeclimate.com/github/grommet/react-formify/badges/coverage.svg)](https://codeclimate.com/github/grommet/react-formify/coverage)  [![Dependency Status](https://david-dm.org/grommet/react-formify.svg)](https://david-dm.org/grommet/react-formify) [![devDependency Status](https://david-dm.org/grommet/react-formify/dev-status.svg)](https://david-dm.org/grommet/react-formify#info=devDependencies)
 
-# grommet-form
+# react-formify
 
 An uncontrolled react Form component with validation capabilities.
 
 ## Install
 
-`npm install grommet-form`
+`npm install react-formify`
 
 or 
 
-`yarn add grommet-form`
+`yarn add react-formify`
 
 ## Usage
 
 ```javascript
 import React from 'react';
-import Form from 'grommet-form';
+import Form from 'react-formify';
 
 const emailExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
