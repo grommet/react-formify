@@ -3,8 +3,8 @@ import git from 'simple-git/promise';
 import del from 'del';
 import fs from 'fs-extra';
 
-const repoURL = `https://${process.env.GH_TOKEN}@github.com/grommet/grommet-form.git`;
-const localFolder = path.resolve('./.tmp/grommet-form');
+const repoURL = `https://${process.env.GH_TOKEN}@github.com/grommet/react-formify.git`;
+const localFolder = path.resolve('./.tmp/react-formify');
 const localDist = path.resolve('./dist');
 
 if (process.env.CI) {

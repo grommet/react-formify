@@ -47,9 +47,9 @@ export default {
   entry: './src/index.js',
   output: {
     path: path.resolve('./dist'),
-    filename: 'grommet-form.min.js',
+    filename: 'react-formify.min.js',
     libraryTarget: 'var',
-    library: 'GrommetForm',
+    library: 'ReactFormify',
   },
   externals: {
     'react': 'React',
