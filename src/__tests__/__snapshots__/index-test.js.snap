@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components loads 1`] = `
+Object {
+  "FormState": [Function],
+  "default": [Function],
+}
+`;
