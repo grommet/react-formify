@@ -11,10 +11,11 @@ export default class Form extends Component {
     defaultValue: undefined,
   }
   static propTypes = {
-    rules: PropTypes.object.isRequired,
-    defaultErrors: PropTypes.object.isRequired,
-    defaultValue: PropTypes.object.isRequired,
+    children: PropTypes.func.isRequired,
+    defaultErrors: PropTypes.object,
+    defaultValue: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
+    rules: PropTypes.object.isRequired,
   }
   constructor(props, context) {
     super(props, context);

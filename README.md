@@ -57,13 +57,13 @@ const UserForm = () => (
 
 ## Try
 
-[![](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/grommet/grommet-site?initialpath=button&amp;module=%2Fscreens%2FButton.js)
+[![](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/grommet/grommet-form-site)
 
 ## Form Props (API)
 
 ### **children**
 
-A function that will be invoked with state and errors. State is an object that you can
+Required. A function that will be invoked with state and errors. State is an object that you can
 get the form properties per key defined in rules. For example, these rules:
 
 ```javascript
@@ -101,14 +101,62 @@ This approach of holding the values in a raw object allows you to use any form e
 
 * **errors** object will hold the errors in a given form element. The errors will be present if you passed some `defaultErrors` or when the form is submitted.
 
-You can call `state.get('optional')` to get the form properties object for fields that do not have any validation criteria.
+You can call `state.get('optional')` to get the form properties object for fields that do not have any validation criteria. Similarly, you can call `errors.get('address.street.home')` to get the error of a given nested property in the object, returning undefined otherwise.
+
+### **defaultErrors**
+
+An object with default errors to show when the form is rendered.
+
+### **defaultValue**
+
+An object with default values to show when the form is rendered.
+
+### **onSubmit**
+
+Required. A function that will be invoked when the form is submitted and **valid**.
+The object (resource) is passed as the first argument to the function.
 
 ### **rules**
 
 An object or function that will validate the form based on predefined rules. If `rules` is a function, it will be invoked when validation is needed. The function passes the resource as the argument so that the caller can decide which set of rules to return. This can be useful when you want a completely different set of rules depending on a given selection in the form, for example:
 
 ```javascript
+const userRules = (user) => {
+  const defaultValidation = {
+    email: (value) => {
+      if (!value || value === '') {
+        return 'Email is required';
+      } else if (!emailExpression.test(value)) {
+        return 'Email is not valid';
+      }
+      return undefined;
+    },
+    name: 'Name is required',
+    size: 'Size is required',
+    confirm: 'Please confirm answers',
+    address: {
+      home: {
+        street: 'Street is required',
+      },
+    },
+  };
+  if (
+    user.address &&
+    user.address.home &&
+    user.address.home.street &&
+    user.address.home.street !== ''
+  ) {
+    return deepMerge(defaultValidation, {
+      address: {
+        city: 'City is required if you provided street',
+      },
+    });
+  }
+  return defaultValidation;
+};
 ```
+
+In this example, `city` will be required if `street` name is provided.
 
 ## Build 
 
