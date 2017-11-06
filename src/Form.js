@@ -15,7 +15,7 @@ export default class Form extends Component {
     defaultErrors: PropTypes.object,
     defaultValue: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
-    rules: PropTypes.object.isRequired,
+    rules: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   }
   constructor(props, context) {
     super(props, context);
