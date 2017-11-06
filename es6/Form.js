@@ -103,7 +103,7 @@ Form.propTypes = {
   defaultErrors: _propTypes2.default.object,
   defaultValue: _propTypes2.default.object,
   onSubmit: _propTypes2.default.func.isRequired,
-  rules: _propTypes2.default.object.isRequired
+  rules: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]).isRequired
 };
 
 var _initialiseProps = function _initialiseProps() {
