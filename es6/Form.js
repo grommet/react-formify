@@ -148,9 +148,12 @@ var _initialiseProps = function _initialiseProps() {
       value: (0, _utils.getValueByKey)(resource, key) || '',
       checked: (0, _utils.getValueByKey)(resource, key) === true,
       onChange: function onChange(event) {
-        var value = event.option || event.target.value;
-        if (event.target && (event.target.value === '' || event.target.value === 'true')) {
-          value = event.target.checked;
+        var value = typeof event === 'string' ? event : event.option;
+        if (!value) {
+          value = event.target.value;
+          if (event.target && (event.target.value === '' || event.target.value === 'true')) {
+            value = event.target.checked;
+          }
         }
         formState.set(key, value);
       }
