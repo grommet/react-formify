@@ -296,3 +296,239 @@ exports[`Form renders 8`] = `
   </fieldset>
 </form>
 `;
+
+exports[`Form works with Grommet Select 1`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-select"
+    >
+      <input
+        type="text"
+        name="size"
+        class="grommetux-input grommetux-select__input"
+        readonly=""
+        value=""
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-select__control"
+        aria-label="Select Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-caret-down grommetux-control-icon--responsive"
+            aria-label="caret-down"
+          >
+            <polygon
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              points="22 8 12 20 2 8"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet Select 2`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-select"
+    >
+      <input
+        type="text"
+        name="size"
+        class="grommetux-input grommetux-select__input"
+        readonly=""
+        value=""
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-select__control"
+        aria-label="Select Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-caret-down grommetux-control-icon--responsive"
+            aria-label="caret-down"
+          >
+            <polygon
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              points="22 8 12 20 2 8"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <span
+      class="error"
+    >
+      is required
+    </span>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet Select 3`] = `
+<div
+  class="grommet grommetux-drop"
+  style="left: 0px; width: 0.1px; top: 0px; max-height: 768px;"
+>
+  <div>
+    <div
+      class="grommetux-select__drop"
+    >
+      <ol
+        class="grommetux-select__options"
+      >
+        <li
+          class="grommetux-select__option"
+        >
+          one
+        </li>
+        <li
+          class="grommetux-select__option"
+        >
+          two
+        </li>
+        <li
+          class="grommetux-select__option"
+        >
+          three
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Form works with Grommet Select 4`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-select"
+      id="1894311200"
+    >
+      <input
+        type="text"
+        name="size"
+        class="grommetux-input grommetux-select__input"
+        readonly=""
+        value="two"
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-select__control"
+        aria-label="Select Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-caret-down grommetux-control-icon--responsive"
+            aria-label="caret-down"
+          >
+            <polygon
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              points="22 8 12 20 2 8"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet Select 5`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-select"
+      id="1894311200"
+    >
+      <input
+        type="text"
+        name="size"
+        class="grommetux-input grommetux-select__input"
+        readonly=""
+        value="two"
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-select__control"
+        aria-label="Select Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-caret-down grommetux-control-icon--responsive"
+            aria-label="caret-down"
+          >
+            <polygon
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              points="22 8 12 20 2 8"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;

@@ -2,6 +2,8 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+import { Select } from 'grommet';
+
 import Form from '../Form';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -115,5 +117,51 @@ test('Form renders', () => {
       email: 'test@default.com',
       name: 'test_default',
       optional: { field: 'test' } },
+  );
+});
+
+test('Form works with Grommet Select', () => {
+  // make sure to remove all body children
+  document.body.innerHTML = '';
+  document.body.appendChild(document.createElement('div'));
+
+  const onSubmit = jest.fn();
+  const selectRules = {
+    size: 'is required',
+  };
+  const component = mount(
+    <Form rules={selectRules} onSubmit={onSubmit}>
+      {(state, errors) => (
+        <fieldset>
+          <Select options={['one', 'two', 'three']} {...state.size} />
+          {errors.size ? <span className='error'>{errors.size}</span> : undefined}
+          <button type='submit'>Add</button>
+        </fieldset>
+      )}
+    </Form>, {
+      attachTo: document.body.firstChild,
+    }
+  );
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find("button[type='submit']").simulate('submit');
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  // click to open the drop
+  component.find("button[type='button']").simulate('click');
+
+  expect(document.querySelector('.grommetux-drop')).toMatchSnapshot();
+
+  document.querySelectorAll('.grommetux-select__option')[1].click();
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find("button[type='submit']").simulate('submit');
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+  expect(onSubmit).toBeCalledWith(
+    { size: 'two' }
   );
 });

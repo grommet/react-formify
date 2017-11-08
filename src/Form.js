@@ -71,9 +71,12 @@ export default class Form extends Component {
       value: getValueByKey(resource, key) || '',
       checked: getValueByKey(resource, key) === true,
       onChange: (event) => {
-        let value = event.option || event.target.value;
-        if (event.target && (event.target.value === '' || event.target.value === 'true')) {
-          value = event.target.checked;
+        let value = event.option;
+        if (!value) {
+          value = event.target.value;
+          if (event.target && (event.target.value === '' || event.target.value === 'true')) {
+            value = event.target.checked;
+          }
         }
         formState.set(key, value);
       },
