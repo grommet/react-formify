@@ -297,6 +297,207 @@ exports[`Form renders 8`] = `
 </form>
 `;
 
+exports[`Form works with Grommet DateTime 1`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-date-time"
+      id="-1887354600"
+    >
+      <input
+        name="date"
+        class="grommetux-input grommetux-date-time__input"
+        placeholder="M/D/YYYY h:mm a"
+        value=""
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-date-time__control"
+        aria-label="Date Time Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-clock grommetux-control-icon--responsive"
+            aria-label="clock"
+          >
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,5 L12,12 L17,12"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet DateTime 2`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-date-time"
+      id="-1887354600"
+    >
+      <input
+        name="date"
+        class="grommetux-input grommetux-date-time__input"
+        placeholder="M/D/YYYY h:mm a"
+        value=""
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-date-time__control"
+        aria-label="Date Time Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-clock grommetux-control-icon--responsive"
+            aria-label="clock"
+          >
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,5 L12,12 L17,12"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <span
+      class="error"
+    >
+      is required
+    </span>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet DateTime 3`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-date-time"
+      id="-1887354600"
+    >
+      <input
+        name="date"
+        class="grommetux-input grommetux-date-time__input"
+        placeholder="M/D/YYYY h:mm a"
+        value="11/20/2017"
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-date-time__control"
+        aria-label="Date Time Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-clock grommetux-control-icon--responsive"
+            aria-label="clock"
+          >
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,5 L12,12 L17,12"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form works with Grommet DateTime 4`] = `
+<form>
+  <fieldset>
+    <div
+      class="grommetux-date-time"
+      id="-1887354600"
+    >
+      <input
+        name="date"
+        class="grommetux-input grommetux-date-time__input"
+        placeholder="M/D/YYYY h:mm a"
+        value="11/20/2017"
+      />
+      <button
+        type="button"
+        class="grommetux-button grommetux-button--plain grommetux-date-time__control"
+        aria-label="Date Time Icon"
+      >
+        <span
+          class="grommetux-button__icon"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 24 24"
+            width="24px"
+            height="24px"
+            role="img"
+            class="grommetux-control-icon grommetux-control-icon-clock grommetux-control-icon--responsive"
+            aria-label="clock"
+          >
+            <path
+              fill="none"
+              stroke="#000"
+              stroke-width="2"
+              d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,5 L12,12 L17,12"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
 exports[`Form works with Grommet Select 1`] = `
 <form>
   <fieldset>

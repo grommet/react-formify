@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { Select } from 'grommet';
+import { DateTime, Select } from 'grommet';
 
 import Form from '../Form';
 
@@ -163,5 +163,40 @@ test('Form works with Grommet Select', () => {
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
     { size: 'two' }
+  );
+});
+
+test('Form works with Grommet DateTime', () => {
+  const onSubmit = jest.fn();
+  const dateRules = {
+    date: 'is required',
+  };
+  const component = mount(
+    <Form rules={dateRules} onSubmit={onSubmit}>
+      {(state, errors) => (
+        <fieldset>
+          <DateTime {...state.date} />
+          {errors.date ? <span className='error'>{errors.date}</span> : undefined}
+          <button type='submit'>Add</button>
+        </fieldset>
+      )}
+    </Form>
+  );
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find("button[type='submit']").simulate('submit');
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find('input').simulate('change', { target: { value: '11/20/2017' } });
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find("button[type='submit']").simulate('submit');
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+  expect(onSubmit).toBeCalledWith(
+    { date: '11/20/2017' }
   );
 });

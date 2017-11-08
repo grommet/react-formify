@@ -71,7 +71,7 @@ export default class Form extends Component {
       value: getValueByKey(resource, key) || '',
       checked: getValueByKey(resource, key) === true,
       onChange: (event) => {
-        let value = event.option;
+        let value = typeof event === 'string' ? event : event.option;
         if (!value) {
           value = event.target.value;
           if (event.target && (event.target.value === '' || event.target.value === 'true')) {
