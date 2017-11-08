@@ -47,6 +47,17 @@ const UserForm = () => (
         <input {...state.get('optional.field')} />
         {errors.email ? <span className="error">{errors.email}</span> : undefined}
         <button type='submit'>Add</button>
+        <button
+          type='button'
+          onClick={() => {
+            state.set('name', 'Alan Test');
+            state.set({
+              email: 'alan@test.com',
+            });
+          }}
+        >
+          Set Default
+        </button>
       </fieldset>
     )}
   </Form>
@@ -102,6 +113,8 @@ This approach of holding the values in a raw object allows you to use any form e
 * **errors** object will hold the errors in a given form element. The errors will be present if you passed some `defaultErrors` or when the form is submitted.
 
 You can call `state.get('optional')` to get the form properties object for fields that do not have any validation criteria. Similarly, you can call `errors.get('address.street.home')` to get the error of a given nested property in the object, returning undefined otherwise.
+
+You can also call `state.set('key', value)` or `state.set({ key: value, key2: value })` to update `react-formify` resource value.
 
 ### **defaultErrors**
 

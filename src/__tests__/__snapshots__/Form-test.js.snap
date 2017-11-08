@@ -29,6 +29,11 @@ exports[`Form renders 1`] = `
     >
       Add
     </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
   </fieldset>
 </form>
 `;
@@ -72,6 +77,11 @@ exports[`Form renders 2`] = `
     >
       Add
     </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
   </fieldset>
 </form>
 `;
@@ -105,6 +115,11 @@ exports[`Form renders 3`] = `
     >
       Add
     </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
   </fieldset>
 </form>
 `;
@@ -137,6 +152,11 @@ exports[`Form renders 4`] = `
     >
       Add
     </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
   </fieldset>
 </form>
 `;
@@ -163,6 +183,11 @@ exports[`Form renders 5`] = `
       type="submit"
     >
       Add
+    </button>
+    <button
+      type="button"
+    >
+      Set Default
     </button>
   </fieldset>
 </form>
@@ -197,6 +222,11 @@ exports[`Form renders 6`] = `
     >
       Add
     </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
   </fieldset>
 </form>
 `;
@@ -224,6 +254,44 @@ exports[`Form renders 7`] = `
       type="submit"
     >
       Add
+    </button>
+    <button
+      type="button"
+    >
+      Set Default
+    </button>
+  </fieldset>
+</form>
+`;
+
+exports[`Form renders 8`] = `
+<form>
+  <fieldset>
+    <input
+      name="name"
+      value="test_default"
+    />
+    <input
+      value="test@default.com"
+      name="email"
+    />
+    <input
+      name="address.street"
+      value="test"
+    />
+    <input
+      name="optional.field"
+      value="test"
+    />
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+    <button
+      type="button"
+    >
+      Set Default
     </button>
   </fieldset>
 </form>

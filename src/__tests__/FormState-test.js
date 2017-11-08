@@ -1,6 +1,6 @@
 import FormState from '../FormState';
 
-import { isObject } from '../utils';
+import { deepMerge } from '../utils';
 
 test('FormState fails to instantiate without rules', () => {
   expect(() => new FormState()).toThrowError('Rules is a required argument');
@@ -17,29 +17,6 @@ test('FormState instantiate with valid basic rule', () => {
 });
 
 const emailExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-function deepMerge(target, ...sources) {
-  if (!sources.length) {
-    return target;
-  }
-  // making sure to not change target (immutable)
-  const output = { ...target };
-  const source = sources.shift();
-  if (isObject(output) && isObject(source)) {
-    Object.keys(source).forEach((key) => {
-      if (isObject(source[key])) {
-        if (!output[key]) {
-          output[key] = { ...source[key] };
-        } else {
-          output[key] = deepMerge({}, output[key], source[key]);
-        }
-      } else {
-        output[key] = source[key];
-      }
-    });
-  }
-  return deepMerge(output, ...sources);
-}
 
 test('FormState validates rules', () => {
   const formState = new FormState((user) => {

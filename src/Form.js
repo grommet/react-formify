@@ -79,6 +79,10 @@ export default class Form extends Component {
       },
     };
   }
+  setStateValue = (key, value) => {
+    const { formState } = this.state;
+    formState.set(key, value);
+  }
   getObjectStateValue = (obj, parentKey) => {
     const objStateValue = {};
     Object.keys(obj).forEach((key) => {
@@ -97,6 +101,7 @@ export default class Form extends Component {
     const { errors = {}, resource, rules } = this.state;
     const state = this.getObjectStateValue(typeof rules === 'function' ? rules(resource) : rules);
     state.get = key => this.getStateValue(key);
+    state.set = (key, value) => this.setStateValue(key, value);
     errors.get = key => getValueByKey(errors, key);
     return (
       <form onSubmit={this.onSubmit}>

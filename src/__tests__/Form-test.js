@@ -45,6 +45,17 @@ test('Form renders', () => {
           ) : undefined}
           <input {...state.get('optional.field')} />
           <button type='submit'>Add</button>
+          <button
+            type='button'
+            onClick={() => {
+              state.set('name', 'test_default');
+              state.set({
+                email: 'test@default.com',
+              });
+            }}
+          >
+            Set Default
+          </button>
         </fieldset>
       )}
     </Form>
@@ -54,7 +65,7 @@ test('Form renders', () => {
 
   component.find('input').forEach(node => node.simulate('change', { target: { value: '' } }));
 
-  component.find('button').simulate('submit');
+  component.find("button[type='submit']").simulate('submit');
 
   expect(component.getDOMNode()).toMatchSnapshot();
 
@@ -65,7 +76,7 @@ test('Form renders', () => {
   component.setProps(
     { rules: () => ({ name: 'just name is required' }), defaultErrors: undefined }
   );
-  component.find('button').simulate('submit');
+  component.find("button[type='submit']").simulate('submit');
 
   expect(component.getDOMNode()).toMatchSnapshot();
 
@@ -85,13 +96,24 @@ test('Form renders', () => {
     }
   });
 
-  component.find('button').simulate('submit');
+  component.find("button[type='submit']").simulate('submit');
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
     {
       address: { street: 'test' },
       email: 'test@gmail.com',
       name: 'test',
+      optional: { field: 'test' } },
+  );
+
+  component.find("button[type='button']").simulate('click');
+  component.find("button[type='submit']").simulate('submit');
+  expect(component.getDOMNode()).toMatchSnapshot();
+  expect(onSubmit).toBeCalledWith(
+    {
+      address: { street: 'test' },
+      email: 'test@default.com',
+      name: 'test_default',
       optional: { field: 'test' } },
   );
 });

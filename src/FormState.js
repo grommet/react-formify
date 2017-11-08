@@ -1,4 +1,4 @@
-import { isObject, setValueByKey } from './utils';
+import { deepMerge, isObject, setValueByKey } from './utils';
 
 export default class FormState {
   constructor(rules, obj = {}, onChange) {
@@ -10,7 +10,12 @@ export default class FormState {
     this.onChange = onChange;
   }
   set = (key, value) => {
-    setValueByKey(this.obj, key, value);
+    if (typeof key === 'string') {
+      setValueByKey(this.obj, key, value);
+    } else if (typeof key === 'object') {
+      this.obj = deepMerge(this.obj, key);
+    }
+
     if (this.onChange) {
       this.onChange();
     }
