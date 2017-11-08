@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _utils = require('./utils');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,7 +30,12 @@ var _initialiseProps = function _initialiseProps() {
   var _this = this;
 
   this.set = function (key, value) {
-    (0, _utils.setValueByKey)(_this.obj, key, value);
+    if (typeof key === 'string') {
+      (0, _utils.setValueByKey)(_this.obj, key, value);
+    } else if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
+      _this.obj = (0, _utils.deepMerge)(_this.obj, key);
+    }
+
     if (_this.onChange) {
       _this.onChange();
     }

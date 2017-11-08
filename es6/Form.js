@@ -80,6 +80,9 @@ var Form = function (_Component) {
       state.get = function (key) {
         return _this2.getStateValue(key);
       };
+      state.set = function (key, value) {
+        return _this2.setStateValue(key, value);
+      };
       errors.get = function (key) {
         return (0, _utils.getValueByKey)(errors, key);
       };
@@ -152,6 +155,12 @@ var _initialiseProps = function _initialiseProps() {
         formState.set(key, value);
       }
     };
+  };
+
+  this.setStateValue = function (key, value) {
+    var formState = _this3.state.formState;
+
+    formState.set(key, value);
   };
 
   this.getObjectStateValue = function (obj, parentKey) {
