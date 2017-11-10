@@ -1,4 +1,4 @@
-import { deepMerge, isObject, setValueByKey } from './utils';
+import { deepMerge, isObject, getValueByKey, setValueByKey } from './utils';
 
 export default class FormState {
   constructor(rules, obj = {}, onChange) {
@@ -30,20 +30,20 @@ export default class FormState {
     Object.keys(targetRules).forEach((key) => {
       const rule = targetRules[key];
       if (typeof rule === 'function') {
-        const value = targetObject[key];
+        const value = getValueByKey(targetObject, key);
         if (Array.isArray(value)) {
           const errorsArray = [];
           value.forEach((v, index) => {
-            const message = rule(targetObject[key], index, targetObject);
+            const message = rule(value, index, targetObject);
             if (message) {
               errorsArray[index] = message;
             }
           });
           if (errorsArray.length) {
-            errors[key] = errorsArray;
+            setValueByKey(errors, key, errorsArray);
           }
         } else {
-          const message = rule(targetObject[key], undefined, targetObject);
+          const message = rule(value, undefined, targetObject);
           if (message) {
             errors[key] = message;
           }
@@ -54,7 +54,7 @@ export default class FormState {
           errors[key] = ruleErrors;
         }
       } else if (typeof rule === 'string' && !targetObject[key]) {
-        errors[key] = rule;
+        setValueByKey(errors, key, rule);
       }
     });
     return errors;
