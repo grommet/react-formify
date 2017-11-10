@@ -52,20 +52,20 @@ var _initialiseProps = function _initialiseProps() {
     Object.keys(targetRules).forEach(function (key) {
       var rule = targetRules[key];
       if (typeof rule === 'function') {
-        var value = targetObject[key];
+        var value = (0, _utils.getValueByKey)(targetObject, key);
         if (Array.isArray(value)) {
           var errorsArray = [];
           value.forEach(function (v, index) {
-            var message = rule(targetObject[key], index, targetObject);
+            var message = rule(value, index, targetObject);
             if (message) {
               errorsArray[index] = message;
             }
           });
           if (errorsArray.length) {
-            errors[key] = errorsArray;
+            (0, _utils.setValueByKey)(errors, key, errorsArray);
           }
         } else {
-          var message = rule(targetObject[key], undefined, targetObject);
+          var message = rule(value, undefined, targetObject);
           if (message) {
             errors[key] = message;
           }
@@ -76,7 +76,7 @@ var _initialiseProps = function _initialiseProps() {
           errors[key] = ruleErrors;
         }
       } else if (typeof rule === 'string' && !targetObject[key]) {
-        errors[key] = rule;
+        (0, _utils.setValueByKey)(errors, key, rule);
       }
     });
     return errors;
