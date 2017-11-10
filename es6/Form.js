@@ -149,13 +149,13 @@ var _initialiseProps = function _initialiseProps() {
       checked: (0, _utils.getValueByKey)(resource, key) === true,
       onChange: function onChange(event) {
         var value = typeof event === 'string' ? event : event.option;
-        if (!value) {
+        if (!value && event.target) {
           value = event.target.value;
           if (event.target && (event.target.value === '' || event.target.value === 'true')) {
             value = event.target.checked;
           }
         }
-        formState.set(key, value);
+        formState.set(key, value || '');
       }
     };
   };
