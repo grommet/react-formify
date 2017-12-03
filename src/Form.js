@@ -9,12 +9,14 @@ export default class Form extends Component {
   static defaultProps = {
     defaultErrors: undefined,
     defaultValue: undefined,
+    onChange: undefined,
   }
   static propTypes = {
     children: PropTypes.func.isRequired,
     defaultErrors: PropTypes.object,
     defaultValue: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     rules: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   }
   constructor(props, context) {
@@ -46,12 +48,15 @@ export default class Form extends Component {
       });
     }
   }
-  onChange = () => {
+  onChange = (updated) => {
     const { isFormSubmitted, formState } = this.state;
     if (isFormSubmitted) {
       this.setState({ resource: formState.get(), errors: formState.getErrors() });
     } else {
       this.setState({ resource: formState.get(), errors: undefined });
+    }
+    if (this.props.onChange) {
+      this.props.onChange(updated);
     }
   }
   onSubmit = (event) => {
