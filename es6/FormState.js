@@ -75,7 +75,7 @@ var _initialiseProps = function _initialiseProps() {
         if (Object.keys(ruleErrors).length) {
           errors[key] = ruleErrors;
         }
-      } else if (typeof rule === 'string' && !targetObject[key]) {
+      } else if (typeof rule === 'string' && (!targetObject[key] || targetObject[key].length <= 0)) {
         (0, _utils.setValueByKey)(errors, key, rule);
       }
     });
