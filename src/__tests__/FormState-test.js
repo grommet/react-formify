@@ -92,3 +92,23 @@ test('FormState validates rules', () => {
   expect(formState.getErrors()).toMatchSnapshot();
   expect(formState.get()).toMatchSnapshot();
 });
+
+test('FormState validates empty array', () => {
+  const formState = new FormState({
+    kids: 'Provide Kids',
+  });
+
+  expect(formState.isValid()).toBeFalsy();
+  expect(formState.getErrors()).toMatchSnapshot();
+
+  formState.set('kids', []);
+
+  expect(formState.isValid()).toBeFalsy();
+  expect(formState.getErrors()).toMatchSnapshot();
+
+  formState.set('kids', ['one kid']);
+
+  expect(formState.isValid()).toBeTruthy();
+  expect(formState.getErrors()).toMatchSnapshot();
+  expect(formState.get()).toMatchSnapshot();
+});

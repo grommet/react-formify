@@ -20,6 +20,28 @@ Object {
 }
 `;
 
+exports[`FormState validates empty array 1`] = `
+Object {
+  "kids": "Provide Kids",
+}
+`;
+
+exports[`FormState validates empty array 2`] = `
+Object {
+  "kids": "Provide Kids",
+}
+`;
+
+exports[`FormState validates empty array 3`] = `Object {}`;
+
+exports[`FormState validates empty array 4`] = `
+Object {
+  "kids": Array [
+    "one kid",
+  ],
+}
+`;
+
 exports[`FormState validates rules 1`] = `
 FormState {
   "get": [Function],
