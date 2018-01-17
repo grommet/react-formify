@@ -9,6 +9,7 @@ export default class Form extends Component {
   static defaultProps = {
     defaultErrors: undefined,
     defaultValue: undefined,
+    onValidationError: undefined,
   }
   static propTypes = {
     children: PropTypes.func.isRequired,
@@ -58,13 +59,13 @@ export default class Form extends Component {
   onSubmit = (event) => {
     const { onSubmit, onValidationError } = this.props;
     const { formState, resource } = this.state;
-    const formErrors = {}
+    let formErrors = {};
     event.preventDefault();
     if (formState.isValid()) {
       onSubmit(resource);
     } else {
       formErrors = formState.getErrors();
-      if(typeof onValidationError === 'function') {
+      if (typeof onValidationError === 'function') {
         onValidationError(formErrors);
       }
       this.setState({ isFormSubmitted: true, errors: formErrors });
