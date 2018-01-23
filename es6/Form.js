@@ -99,20 +99,22 @@ var Form = function (_Component) {
 
 Form.defaultProps = {
   defaultErrors: undefined,
-  defaultValue: undefined
+  defaultValue: undefined,
+  onChange: undefined
 };
 Form.propTypes = {
   children: _propTypes2.default.func.isRequired,
   defaultErrors: _propTypes2.default.object,
   defaultValue: _propTypes2.default.object,
   onSubmit: _propTypes2.default.func.isRequired,
+  onChange: _propTypes2.default.func,
   rules: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]).isRequired
 };
 
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.onChange = function () {
+  this.onChange = function (updated) {
     var _state2 = _this3.state,
         isFormSubmitted = _state2.isFormSubmitted,
         formState = _state2.formState;
@@ -121,6 +123,9 @@ var _initialiseProps = function _initialiseProps() {
       _this3.setState({ resource: formState.get(), errors: formState.getErrors() });
     } else {
       _this3.setState({ resource: formState.get(), errors: undefined });
+    }
+    if (_this3.props.onChange) {
+      _this3.props.onChange(updated);
     }
   };
 

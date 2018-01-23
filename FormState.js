@@ -8,6 +8,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _utils = require('./utils');
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var FormState = function FormState(rules) {
@@ -37,7 +39,7 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     if (_this.onChange) {
-      _this.onChange();
+      _this.onChange(_defineProperty({}, key, value));
     }
   };
 
