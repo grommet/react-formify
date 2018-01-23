@@ -17,7 +17,7 @@ export default class FormState {
     }
 
     if (this.onChange) {
-      this.onChange();
+      this.onChange({ [key]: value });
     }
   };
   get = () => this.obj;
