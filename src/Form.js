@@ -106,14 +106,14 @@ export default class Form extends Component {
   }
   render() {
     const { children } = this.props;
-    const { errors = {}, resource, rules } = this.state;
+    const { errors = {}, formState, resource, rules } = this.state;
     const state = this.getObjectStateValue(typeof rules === 'function' ? rules(resource) : rules);
     state.get = key => this.getStateValue(key);
     state.set = (key, value) => this.setStateValue(key, value);
     errors.get = key => getValueByKey(errors, key);
     return (
       <form onSubmit={this.onSubmit}>
-        {children(state, errors)}
+        {children(state, errors, formState.isValid())}
       </form>
     );
   }
