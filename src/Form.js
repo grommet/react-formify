@@ -9,14 +9,14 @@ export default class Form extends Component {
   static defaultProps = {
     defaultErrors: undefined,
     defaultValue: undefined,
-    onValidationError: undefined,
+    onError: undefined,
   }
   static propTypes = {
     children: PropTypes.func.isRequired,
     defaultErrors: PropTypes.object,
     defaultValue: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
-    onValidationError: PropTypes.func,
+    onError: PropTypes.func,
     rules: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   }
   constructor(props, context) {
@@ -57,18 +57,17 @@ export default class Form extends Component {
     }
   }
   onSubmit = (event) => {
-    const { onSubmit, onValidationError } = this.props;
+    const { onSubmit, onError } = this.props;
     const { formState, resource } = this.state;
-    let formErrors = {};
     event.preventDefault();
     if (formState.isValid()) {
       onSubmit(resource);
     } else {
-      formErrors = formState.getErrors();
-      if (typeof onValidationError === 'function') {
-        onValidationError(formErrors);
+      const errors = formState.getErrors();
+      if (typeof onError === 'function') {
+        onError(errors);
       }
-      this.setState({ isFormSubmitted: true, errors: formErrors });
+      this.setState({ isFormSubmitted: true, errors });
     }
   }
   getStateValue = (key) => {
