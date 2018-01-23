@@ -73,6 +73,7 @@ var Form = function (_Component) {
       var _state = this.state,
           _state$errors = _state.errors,
           errors = _state$errors === undefined ? {} : _state$errors,
+          formState = _state.formState,
           resource = _state.resource,
           rules = _state.rules;
 
@@ -89,7 +90,7 @@ var Form = function (_Component) {
       return _react2.default.createElement(
         'form',
         { onSubmit: this.onSubmit },
-        children(state, errors)
+        children(state, errors, formState.isValid())
       );
     }
   }]);
