@@ -53,16 +53,21 @@ var Form = function (_Component) {
   _createClass(Form, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.rules !== this.props.rules || nextProps.defaultErrors !== this.props.defaultErrors || nextProps.defaultValue !== this.props.defaultValue) {
-        var formState = new _FormState2.default(nextProps.rules, nextProps.defaultValue, this.onChange);
-
-        this.setState({
-          formState: formState,
-          resource: formState.get(),
-          errors: nextProps.defaultErrors,
-          rules: nextProps.rules
-        });
+      if (JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) || JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) || JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)) {
+        this.reset(nextProps);
       }
+    }
+  }, {
+    key: 'reset',
+    value: function reset(props) {
+      var formState = new _FormState2.default(props.rules, props.defaultValue, this.onChange);
+
+      this.setState({
+        formState: formState,
+        resource: formState.get(),
+        errors: props.defaultErrors,
+        rules: props.rules
+      });
     }
   }, {
     key: 'render',
@@ -140,7 +145,9 @@ var _initialiseProps = function _initialiseProps() {
 
     event.preventDefault();
     if (formState.isValid()) {
-      onSubmit(formState.getResource());
+      onSubmit(formState.getResource(), function () {
+        return _this3.reset(_this3.props);
+      });
     } else {
       var errors = formState.getErrors();
       if (typeof onError === 'function') {
