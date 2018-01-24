@@ -123,4 +123,5 @@ test('FormState validates empty string', () => {
   formState.set('name', '  test ');
   expect(formState.isValid()).toBeTruthy();
   expect(formState.get()).toMatchSnapshot();
+  expect(formState.getResource()).toMatchSnapshot();
 });

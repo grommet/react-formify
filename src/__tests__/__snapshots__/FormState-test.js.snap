@@ -4,6 +4,7 @@ exports[`FormState instantiate with valid basic rule 1`] = `
 FormState {
   "get": [Function],
   "getErrors": [Function],
+  "getResource": [Function],
   "isValid": [Function],
   "obj": Object {},
   "onChange": undefined,
@@ -44,6 +45,12 @@ Object {
 
 exports[`FormState validates empty string 1`] = `
 Object {
+  "name": "  test ",
+}
+`;
+
+exports[`FormState validates empty string 2`] = `
+Object {
   "name": "test",
 }
 `;
@@ -52,6 +59,7 @@ exports[`FormState validates rules 1`] = `
 FormState {
   "get": [Function],
   "getErrors": [Function],
+  "getResource": [Function],
   "isValid": [Function],
   "obj": Object {},
   "onChange": undefined,

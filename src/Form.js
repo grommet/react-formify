@@ -63,10 +63,10 @@ export default class Form extends Component {
   }
   onSubmit = (event) => {
     const { onSubmit, onError } = this.props;
-    const { formState, resource } = this.state;
+    const { formState } = this.state;
     event.preventDefault();
     if (formState.isValid()) {
-      onSubmit(resource);
+      onSubmit(formState.getResource());
     } else {
       const errors = formState.getErrors();
       if (typeof onError === 'function') {

@@ -20,7 +20,8 @@ export default class FormState {
       this.onChange({ [key]: value });
     }
   };
-  get = () => JSON.parse(JSON.stringify(this.obj).replace(/"\s+|\s+"/g, '"'));
+  get = () => ({ ...this.obj });
+  getResource = () => JSON.parse(JSON.stringify(this.obj).replace(/"\s+|\s+"/g, '"'));
   getErrors = (rules, target) => {
     const errors = {};
     const targetRules = (
