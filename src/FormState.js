@@ -10,18 +10,17 @@ export default class FormState {
     this.onChange = onChange;
   }
   set = (key, value) => {
-    const processedValue = typeof value === 'string' ? value.trim() : value;
     if (typeof key === 'string') {
-      setValueByKey(this.obj, key, processedValue);
+      setValueByKey(this.obj, key, value);
     } else if (typeof key === 'object') {
       this.obj = deepMerge(this.obj, key);
     }
 
     if (this.onChange) {
-      this.onChange({ [key]: processedValue });
+      this.onChange({ [key]: value });
     }
   };
-  get = () => this.obj;
+  get = () => JSON.parse(JSON.stringify(this.obj).replace(/"\s+|\s+"/g, '"'));
   getErrors = (rules, target) => {
     const errors = {};
     const targetRules = (
@@ -30,6 +29,7 @@ export default class FormState {
     const targetObject = target || this.obj;
     Object.keys(targetRules).forEach((key) => {
       const rule = targetRules[key];
+      const processedValue = typeof targetObject[key] === 'string' ? targetObject[key].trim() : targetObject[key];
       if (typeof rule === 'function') {
         const value = getValueByKey(targetObject, key);
         if (Array.isArray(value)) {
@@ -54,7 +54,7 @@ export default class FormState {
         if (Object.keys(ruleErrors).length) {
           errors[key] = ruleErrors;
         }
-      } else if (typeof rule === 'string' && (!targetObject[key] || targetObject[key].length <= 0)) {
+      } else if (typeof rule === 'string' && (!processedValue || processedValue.length <= 0)) {
         setValueByKey(errors, key, rule);
       }
     });
