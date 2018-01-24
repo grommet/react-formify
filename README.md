@@ -36,7 +36,10 @@ const UserForm = () => (
   <Form
     defaultErrors={{ email: 'This is an existing email' }}
     defaultValue={{ email: 'alan@gmail.com' }}
-    onSubmit={user => alert(JSON.stringify(user, null, 2))}
+    onSubmit={(user, reset) => {
+      reset();
+      alert(JSON.stringify(user, null, 2));
+    }}
     rules={rules}
   >
     {(state, errors, isValid) => (
@@ -128,7 +131,7 @@ An object with default values to show when the form is rendered.
 ### **onSubmit**
 
 Required. A function that will be invoked when the form is submitted and **valid**.
-The object (resource) is passed as the first argument to the function.
+The object (resource) is passed as the first argument to the function. The second argument is a reset function that, upon called, will reset the form state.
 
 ### **onError**
 

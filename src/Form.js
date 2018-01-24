@@ -36,19 +36,22 @@ export default class Form extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.rules !== this.props.rules ||
-      nextProps.defaultErrors !== this.props.defaultErrors ||
-      nextProps.defaultValue !== this.props.defaultValue
+      JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) ||
+      JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) ||
+      JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)
     ) {
-      const formState = new FormState(nextProps.rules, nextProps.defaultValue, this.onChange);
-
-      this.setState({
-        formState,
-        resource: formState.get(),
-        errors: nextProps.defaultErrors,
-        rules: nextProps.rules,
-      });
+      this.reset(nextProps);
     }
+  }
+  reset(props) {
+    const formState = new FormState(props.rules, props.defaultValue, this.onChange);
+
+    this.setState({
+      formState,
+      resource: formState.get(),
+      errors: props.defaultErrors,
+      rules: props.rules,
+    });
   }
   onChange = (updated) => {
     const { isFormSubmitted, formState } = this.state;
@@ -66,7 +69,7 @@ export default class Form extends Component {
     const { formState } = this.state;
     event.preventDefault();
     if (formState.isValid()) {
-      onSubmit(formState.getResource());
+      onSubmit(formState.getResource(), () => this.reset(this.props));
     } else {
       const errors = formState.getErrors();
       if (typeof onError === 'function') {

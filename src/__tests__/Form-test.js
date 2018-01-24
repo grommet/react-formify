@@ -110,6 +110,7 @@ test('Form renders', () => {
       email: 'test@gmail.com',
       name: 'test',
       optional: { field: 'test' } },
+    expect.any(Function)
   );
 
   component.find("button[type='button']").simulate('click');
@@ -121,6 +122,7 @@ test('Form renders', () => {
       email: 'test@default.com',
       name: 'test_default',
       optional: { field: 'test' } },
+    expect.any(Function)
   );
 });
 
@@ -166,7 +168,7 @@ test('Form works with Grommet Select', () => {
 
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
-    { size: 'two' }
+    { size: 'two' }, expect.any(Function)
   );
 });
 
@@ -201,7 +203,7 @@ test('Form works with Grommet DateTime', () => {
 
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
-    { date: '11/20/2017' }
+    { date: '11/20/2017' }, expect.any(Function)
   );
 });
 
