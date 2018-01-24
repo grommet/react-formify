@@ -10,14 +10,15 @@ export default class FormState {
     this.onChange = onChange;
   }
   set = (key, value) => {
+    const processedValue = typeof value === 'string' ? value.trim() : value;
     if (typeof key === 'string') {
-      setValueByKey(this.obj, key, value);
+      setValueByKey(this.obj, key, processedValue);
     } else if (typeof key === 'object') {
       this.obj = deepMerge(this.obj, key);
     }
 
     if (this.onChange) {
-      this.onChange({ [key]: value });
+      this.onChange({ [key]: processedValue });
     }
   };
   get = () => this.obj;

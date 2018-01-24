@@ -42,6 +42,12 @@ Object {
 }
 `;
 
+exports[`FormState validates empty string 1`] = `
+Object {
+  "name": "test",
+}
+`;
+
 exports[`FormState validates rules 1`] = `
 FormState {
   "get": [Function],

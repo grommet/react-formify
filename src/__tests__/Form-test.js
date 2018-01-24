@@ -28,6 +28,7 @@ const rules = {
 test('Form renders', () => {
   const onSubmit = jest.fn();
   const onChange = jest.fn();
+  const onError = jest.fn();
   const defaultProps = {
     defaultErrors: { email: 'This is an existing email' },
     defaultValue: { email: 'alan@gmail.com' },
@@ -35,7 +36,7 @@ test('Form renders', () => {
     rules,
   };
   const component = mount(
-    <Form {...defaultProps} onChange={onChange}>
+    <Form {...defaultProps} onChange={onChange} onError={onError}>
       {(state, errors) => (
         <fieldset>
           <input {...state.name} />
@@ -101,6 +102,7 @@ test('Form renders', () => {
 
   component.find("button[type='submit']").simulate('submit');
   expect(onChange).toBeCalled();
+  expect(onError).toBeCalled();
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
     {

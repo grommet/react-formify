@@ -112,3 +112,15 @@ test('FormState validates empty array', () => {
   expect(formState.getErrors()).toMatchSnapshot();
   expect(formState.get()).toMatchSnapshot();
 });
+
+test('FormState validates empty string', () => {
+  const formState = new FormState({
+    name: 'is required',
+  });
+  expect(formState.isValid()).toBeFalsy();
+  formState.set('name', '   ');
+  expect(formState.isValid()).toBeFalsy();
+  formState.set('name', '  test ');
+  expect(formState.isValid()).toBeTruthy();
+  expect(formState.get()).toMatchSnapshot();
+});
