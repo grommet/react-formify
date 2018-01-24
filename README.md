@@ -39,7 +39,7 @@ const UserForm = () => (
     onSubmit={user => alert(JSON.stringify(user, null, 2))}
     rules={rules}
   >
-    {(state, errors) => (
+    {(state, errors, isValid) => (
       <fieldset>
         <input {...state.name} />
         {errors.name ? <span className="error">{errors.name}</span> : undefined}
@@ -55,6 +55,7 @@ const UserForm = () => (
               email: 'alan@test.com',
             });
           }}
+          disabled={isValid}
         >
           Set Default
         </button>

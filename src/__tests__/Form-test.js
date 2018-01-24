@@ -27,6 +27,7 @@ const rules = {
 
 test('Form renders', () => {
   const onSubmit = jest.fn();
+  const onChange = jest.fn();
   const defaultProps = {
     defaultErrors: { email: 'This is an existing email' },
     defaultValue: { email: 'alan@gmail.com' },
@@ -34,7 +35,7 @@ test('Form renders', () => {
     rules,
   };
   const component = mount(
-    <Form {...defaultProps}>
+    <Form {...defaultProps} onChange={onChange}>
       {(state, errors) => (
         <fieldset>
           <input {...state.name} />
@@ -99,6 +100,7 @@ test('Form renders', () => {
   });
 
   component.find("button[type='submit']").simulate('submit');
+  expect(onChange).toBeCalled();
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
     {
@@ -198,5 +200,24 @@ test('Form works with Grommet DateTime', () => {
   expect(component.getDOMNode()).toMatchSnapshot();
   expect(onSubmit).toBeCalledWith(
     { date: '11/20/2017' }
+  );
+});
+
+test('Form passes isValid with false', () => {
+  const basisRule = {
+    name: 'Name is required',
+  };
+  mount(
+    <Form rules={basisRule}>
+      {(state, errors, isValid) => expect(isValid).toBeFalsy()}
+    </Form>
+  );
+});
+
+test('Form passes isValid with true', () => {
+  mount(
+    <Form rules={{ test: () => undefined }}>
+      {(state, errors, isValid) => expect(isValid).toBeTruthy()}
+    </Form>
   );
 });

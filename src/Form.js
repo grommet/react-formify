@@ -9,6 +9,7 @@ export default class Form extends Component {
   static defaultProps = {
     defaultErrors: undefined,
     defaultValue: undefined,
+    onChange: undefined,
     onValidationError: undefined,
   }
   static propTypes = {
@@ -16,6 +17,7 @@ export default class Form extends Component {
     defaultErrors: PropTypes.object,
     defaultValue: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     onValidationError: PropTypes.func,
     rules: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   }
@@ -48,12 +50,15 @@ export default class Form extends Component {
       });
     }
   }
-  onChange = () => {
+  onChange = (updated) => {
     const { isFormSubmitted, formState } = this.state;
     if (isFormSubmitted) {
       this.setState({ resource: formState.get(), errors: formState.getErrors() });
     } else {
       this.setState({ resource: formState.get(), errors: undefined });
+    }
+    if (this.props.onChange) {
+      this.props.onChange(updated);
     }
   }
   onSubmit = (event) => {
@@ -108,14 +113,14 @@ export default class Form extends Component {
   }
   render() {
     const { children } = this.props;
-    const { errors = {}, resource, rules } = this.state;
+    const { errors = {}, formState, resource, rules } = this.state;
     const state = this.getObjectStateValue(typeof rules === 'function' ? rules(resource) : rules);
     state.get = key => this.getStateValue(key);
     state.set = (key, value) => this.setStateValue(key, value);
     errors.get = key => getValueByKey(errors, key);
     return (
       <form onSubmit={this.onSubmit}>
-        {children(state, errors)}
+        {children(state, errors, formState.isValid())}
       </form>
     );
   }
