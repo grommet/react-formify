@@ -101,6 +101,7 @@ var Form = function (_Component) {
 Form.defaultProps = {
   defaultErrors: undefined,
   defaultValue: undefined,
+  onError: undefined,
   onChange: undefined
 };
 Form.propTypes = {
@@ -108,6 +109,7 @@ Form.propTypes = {
   defaultErrors: _propTypes2.default.object,
   defaultValue: _propTypes2.default.object,
   onSubmit: _propTypes2.default.func.isRequired,
+  onError: _propTypes2.default.func,
   onChange: _propTypes2.default.func,
   rules: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]).isRequired
 };
@@ -131,7 +133,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.onSubmit = function (event) {
-    var onSubmit = _this3.props.onSubmit;
+    var _props = _this3.props,
+        onSubmit = _props.onSubmit,
+        onError = _props.onError;
     var _state3 = _this3.state,
         formState = _state3.formState,
         resource = _state3.resource;
@@ -140,7 +144,11 @@ var _initialiseProps = function _initialiseProps() {
     if (formState.isValid()) {
       onSubmit(resource);
     } else {
-      _this3.setState({ isFormSubmitted: true, errors: formState.getErrors() });
+      var errors = formState.getErrors();
+      if (typeof onError === 'function') {
+        onError(errors);
+      }
+      _this3.setState({ isFormSubmitted: true, errors: errors });
     }
   };
 
