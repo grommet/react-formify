@@ -136,13 +136,11 @@ var _initialiseProps = function _initialiseProps() {
     var _props = _this3.props,
         onSubmit = _props.onSubmit,
         onError = _props.onError;
-    var _state3 = _this3.state,
-        formState = _state3.formState,
-        resource = _state3.resource;
+    var formState = _this3.state.formState;
 
     event.preventDefault();
     if (formState.isValid()) {
-      onSubmit(resource);
+      onSubmit(formState.getResource());
     } else {
       var errors = formState.getErrors();
       if (typeof onError === 'function') {
@@ -153,9 +151,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getStateValue = function (key) {
-    var _state4 = _this3.state,
-        formState = _state4.formState,
-        resource = _state4.resource;
+    var _state3 = _this3.state,
+        formState = _state3.formState,
+        resource = _state3.resource;
 
     return {
       name: key,
