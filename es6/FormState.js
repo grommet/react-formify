@@ -32,20 +32,19 @@ var _initialiseProps = function _initialiseProps() {
   var _this = this;
 
   this.set = function (key, value) {
-    var processedValue = typeof value === 'string' ? value.trim() : value;
     if (typeof key === 'string') {
-      (0, _utils.setValueByKey)(_this.obj, key, processedValue);
+      (0, _utils.setValueByKey)(_this.obj, key, value);
     } else if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
       _this.obj = (0, _utils.deepMerge)(_this.obj, key);
     }
 
     if (_this.onChange) {
-      _this.onChange(_defineProperty({}, key, processedValue));
+      _this.onChange(_defineProperty({}, key, value));
     }
   };
 
   this.get = function () {
-    return _this.obj;
+    return JSON.parse(JSON.stringify(_this.obj).replace(/"\s+|\s+"/g, '"'));
   };
 
   this.getErrors = function (rules, target) {
@@ -54,6 +53,7 @@ var _initialiseProps = function _initialiseProps() {
     var targetObject = target || _this.obj;
     Object.keys(targetRules).forEach(function (key) {
       var rule = targetRules[key];
+      var processedValue = typeof targetObject[key] === 'string' ? targetObject[key].trim() : targetObject[key];
       if (typeof rule === 'function') {
         var value = (0, _utils.getValueByKey)(targetObject, key);
         if (Array.isArray(value)) {
@@ -78,7 +78,7 @@ var _initialiseProps = function _initialiseProps() {
         if (Object.keys(ruleErrors).length) {
           errors[key] = ruleErrors;
         }
-      } else if (typeof rule === 'string' && (!targetObject[key] || targetObject[key].length <= 0)) {
+      } else if (typeof rule === 'string' && (!processedValue || processedValue.length <= 0)) {
         (0, _utils.setValueByKey)(errors, key, rule);
       }
     });
