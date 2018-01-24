@@ -32,14 +32,15 @@ var _initialiseProps = function _initialiseProps() {
   var _this = this;
 
   this.set = function (key, value) {
+    var processedValue = typeof value === 'string' ? value.trim() : value;
     if (typeof key === 'string') {
-      (0, _utils.setValueByKey)(_this.obj, key, value);
+      (0, _utils.setValueByKey)(_this.obj, key, processedValue);
     } else if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
       _this.obj = (0, _utils.deepMerge)(_this.obj, key);
     }
 
     if (_this.onChange) {
-      _this.onChange(_defineProperty({}, key, value));
+      _this.onChange(_defineProperty({}, key, processedValue));
     }
   };
 
