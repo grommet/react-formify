@@ -225,3 +225,16 @@ test('Form passes isValid with true', () => {
     </Form>
   );
 });
+
+
+test('Form resets', () => {
+  const wrapper = mount(
+    <Form rules={{ test: () => undefined }}>
+      {() => {}}
+    </Form>
+  );
+
+  const spy = jest.spyOn(wrapper.instance(), 'reset');
+  wrapper.setProps({ reset: true });
+  expect(spy).toHaveBeenCalled();
+});

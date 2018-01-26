@@ -11,6 +11,7 @@ export default class Form extends Component {
     defaultValue: undefined,
     onError: undefined,
     onChange: undefined,
+    reset: undefined,
   }
   static propTypes = {
     children: PropTypes.func.isRequired,
@@ -19,6 +20,7 @@ export default class Form extends Component {
     onSubmit: PropTypes.func.isRequired,
     onError: PropTypes.func,
     onChange: PropTypes.func,
+    reset: PropTypes.bool,
     rules: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   }
   constructor(props, context) {
@@ -36,6 +38,7 @@ export default class Form extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (
+      nextProps.reset ||
       JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) ||
       JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) ||
       JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)

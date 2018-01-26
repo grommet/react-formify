@@ -143,6 +143,10 @@ This function will pass all the current errors in the callback.
 Optional. A function that will be invoked when any form element is changed.
 This function will pass an object that contains what has been changed.
 
+### **reset**
+
+Optional. Whether or not the form should reset to its original state.
+
 ### **rules**
 
 An object or function that will validate the form based on predefined rules. If `rules` is a function, it will be invoked when validation is needed. The function passes the resource as the argument so that the caller can decide which set of rules to return. This can be useful when you want a completely different set of rules depending on a given selection in the form, for example:
