@@ -25,6 +25,45 @@ export function deepMerge(target, ...sources) {
   return deepMerge(output, ...sources);
 }
 
+export function deepCompare(obj1, obj2) {
+  if (obj1 && obj2) {
+    let diff = Object.keys(obj1).find((key) => {
+      if (obj1.hasOwnProperty(key) !== obj2.hasOwnProperty(key)) {
+        return true;
+      }
+      switch (typeof (obj1[key])) {
+      case 'object':
+        if (!deepCompare(obj1[key], obj2[key])) {
+          return true;
+        }
+        break;
+      case 'function':
+        if (typeof (obj2[key]) === 'undefined' || (obj1[key].toString() !== obj2[key].toString())) {
+          return true;
+        }
+        break;
+      default:
+        if (obj1[key] !== obj2[key]) {
+          return true;
+        }
+      }
+      return false;
+    });
+    if (diff) {
+      return false;
+    }
+    // check if obj2 has any props that do not exist in obj1
+    diff = Object.keys(obj2).find(key => (
+      typeof (obj1[key]) === 'undefined'
+    ));
+    if (diff) {
+      return false;
+    }
+  }
+  return (obj1 === obj2);
+}
+
+
 export function getValueByKey(resource, key) {
   const group = key.split('.');
   let currentObject = resource;

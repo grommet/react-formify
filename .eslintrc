@@ -29,6 +29,7 @@
     "comma-dangle": ["error", "always-multiline"],
     "jsx-quotes": ["error", "prefer-single"],
     "no-console": 0,
+    "no-prototype-builtins":0,
     "quote-props": ["error", "consistent"],
     "react/forbid-prop-types": 0,  // Soft requirement now, try hard requ in future
     "react/jsx-boolean-value": [1, "always"],

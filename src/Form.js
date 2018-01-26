@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import FormState from './FormState';
 
-import { getValueByKey, isObject } from './utils';
+import { getValueByKey, isObject, deepCompare } from './utils';
 
 export default class Form extends Component {
   static defaultProps = {
@@ -39,9 +39,9 @@ export default class Form extends Component {
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.reset ||
-      JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) ||
-      JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) ||
-      JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)
+      !deepCompare(nextProps.rules, this.props.rules) ||
+      !deepCompare(nextProps.defaultErrors, this.props.defaultErrors) ||
+      !deepCompare(nextProps.defaultValue, this.props.defaultValue)
     ) {
       this.reset(nextProps);
     }
