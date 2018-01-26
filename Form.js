@@ -53,7 +53,7 @@ var Form = function (_Component) {
   _createClass(Form, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) || JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) || JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)) {
+      if (nextProps.reset || JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) || JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) || JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)) {
         this.reset(nextProps);
       }
     }
@@ -107,7 +107,8 @@ Form.defaultProps = {
   defaultErrors: undefined,
   defaultValue: undefined,
   onError: undefined,
-  onChange: undefined
+  onChange: undefined,
+  reset: undefined
 };
 Form.propTypes = {
   children: _propTypes2.default.func.isRequired,
@@ -116,6 +117,7 @@ Form.propTypes = {
   onSubmit: _propTypes2.default.func.isRequired,
   onError: _propTypes2.default.func,
   onChange: _propTypes2.default.func,
+  reset: _propTypes2.default.bool,
   rules: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]).isRequired
 };
 
