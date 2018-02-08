@@ -10,6 +10,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.isObject = isObject;
 exports.deepMerge = deepMerge;
+exports.deepCompare = deepCompare;
 exports.getValueByKey = getValueByKey;
 exports.setValueByKey = setValueByKey;
 function isObject(item) {
@@ -41,6 +42,44 @@ function deepMerge(target) {
     });
   }
   return deepMerge.apply(undefined, [output].concat(sources));
+}
+
+function deepCompare(obj1, obj2) {
+  if (obj1 && obj2) {
+    var diff = Object.keys(obj1).find(function (key) {
+      if (obj1.hasOwnProperty(key) !== obj2.hasOwnProperty(key)) {
+        return true;
+      }
+      switch (_typeof(obj1[key])) {
+        case 'object':
+          if (!deepCompare(obj1[key], obj2[key])) {
+            return true;
+          }
+          break;
+        case 'function':
+          if (typeof obj2[key] === 'undefined' || obj1[key].toString() !== obj2[key].toString()) {
+            return true;
+          }
+          break;
+        default:
+          if (obj1[key] !== obj2[key]) {
+            return true;
+          }
+      }
+      return false;
+    });
+    if (diff) {
+      return false;
+    }
+    // check if obj2 has any props that do not exist in obj1
+    diff = Object.keys(obj2).find(function (key) {
+      return typeof obj1[key] === 'undefined';
+    });
+    if (diff) {
+      return false;
+    }
+  }
+  return obj1 === obj2;
 }
 
 function getValueByKey(resource, key) {

@@ -53,7 +53,7 @@ var Form = function (_Component) {
   _createClass(Form, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.reset || JSON.stringify(nextProps.rules) !== JSON.stringify(this.props.rules) || JSON.stringify(nextProps.defaultErrors) !== JSON.stringify(this.props.defaultErrors) || JSON.stringify(nextProps.defaultValue) !== JSON.stringify(this.props.defaultValue)) {
+      if (nextProps.reset || !(0, _utils.deepCompare)(nextProps.rules, this.props.rules) || !(0, _utils.deepCompare)(nextProps.defaultErrors, this.props.defaultErrors) || !(0, _utils.deepCompare)(nextProps.defaultValue, this.props.defaultValue)) {
         this.reset(nextProps);
       }
     }
