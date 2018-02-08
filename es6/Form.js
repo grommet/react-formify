@@ -176,7 +176,7 @@ var _initialiseProps = function _initialiseProps() {
             value = event.target.checked;
           }
         }
-        formState.set(key, value || '');
+        formState.set(key, typeof value === 'undefined' ? '' : value);
       }
     };
   };
