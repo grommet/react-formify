@@ -95,7 +95,7 @@ export default class Form extends Component {
             value = event.target.checked;
           }
         }
-        formState.set(key, value || '');
+        formState.set(key, typeof value === 'undefined' ? '' : value);
       },
     };
   }
