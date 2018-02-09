@@ -297,6 +297,36 @@ exports[`Form renders 8`] = `
 </form>
 `;
 
+exports[`Form renders with empty string and checkbox 1`] = `
+<form>
+  <fieldset>
+    <input
+      name="email"
+      value=""
+    />
+    <input
+      name="name"
+      value=""
+    />
+    <input
+      type="checkbox"
+      name="nice"
+      value=""
+    />
+    <input
+      type="radiobutton"
+      name="gender"
+      value=""
+    />
+    <button
+      type="submit"
+    >
+      Add
+    </button>
+  </fieldset>
+</form>
+`;
+
 exports[`Form works with Grommet DateTime 1`] = `
 <form>
   <fieldset>

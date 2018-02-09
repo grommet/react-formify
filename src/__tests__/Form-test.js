@@ -238,3 +238,85 @@ test('Form resets', () => {
   wrapper.setProps({ reset: true });
   expect(spy).toHaveBeenCalled();
 });
+
+test('Form renders with empty string and checkbox', () => {
+  const onSubmit = jest.fn();
+  const defaultProps = {
+    onSubmit,
+    rules: {
+      email: (value) => {
+        if (!value || value === '') {
+          return 'Email is required';
+        } else if (!emailExpression.test(value)) {
+          return 'Email is not valid';
+        }
+        return undefined;
+      },
+    },
+  };
+  const component = mount(
+    <Form {...defaultProps}>
+      {state => (
+        <fieldset>
+          <input {...state.email} />
+          <input {...state.get('name')} />
+          <input type='checkbox' {...state.get('nice')} />
+          <input type='radiobutton' {...state.get('gender')} />
+          <button type='submit'>Add</button>
+        </fieldset>
+      )}
+    </Form>
+  );
+
+  expect(component.getDOMNode()).toMatchSnapshot();
+
+  component.find('input').forEach((node, index) => {
+    if (index === 0) {
+      node.simulate('change', { target: { value: 'test@gmail.com' } });
+    } else if (index === 1) {
+      node.simulate('change', { target: { type: 'text', value: '', checked: false } });
+    } else if (index === 2) {
+      node.simulate('change', { target: { type: 'checkbox', value: '', checked: false } });
+    }
+  });
+
+  component.find("button[type='submit']").simulate('submit');
+  expect(onSubmit).toBeCalledWith(
+    {
+      email: 'test@gmail.com',
+      name: '',
+      nice: false,
+    },
+    expect.any(Function)
+  );
+
+  component.find('input').last().simulate(
+    'change', { target: { type: 'radio', value: 'female', checked: true } }
+  );
+
+  component.find("button[type='submit']").simulate('submit');
+  expect(onSubmit).toBeCalledWith(
+    {
+      email: 'test@gmail.com',
+      name: '',
+      nice: false,
+      gender: 'female',
+    },
+    expect.any(Function)
+  );
+
+  component.find('input').last().simulate(
+    'change', { target: { type: 'radio', value: 'male', checked: true } }
+  );
+
+  component.find("button[type='submit']").simulate('submit');
+  expect(onSubmit).toBeCalledWith(
+    {
+      email: 'test@gmail.com',
+      name: '',
+      nice: false,
+      gender: 'male',
+    },
+    expect.any(Function)
+  );
+});
