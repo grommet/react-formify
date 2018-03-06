@@ -100,7 +100,7 @@ exports[`Form renders 3`] = `
     </span>
     <input
       name="email"
-      value=""
+      value="alan@gmail.com"
     />
     <input
       name="address.street"
@@ -201,7 +201,7 @@ exports[`Form renders 6`] = `
       value=""
     />
     <input
-      value=""
+      value="alan@gmail.com"
       name="email"
     />
     <span
