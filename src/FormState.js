@@ -6,7 +6,7 @@ export default class FormState {
       throw new Error('Rules is a required argument');
     }
     this.rules = rules;
-    this.obj = obj;
+    this.obj = JSON.parse(JSON.stringify(obj));
     this.onChange = onChange;
   }
   set = (key, value) => {
