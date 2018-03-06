@@ -26,7 +26,7 @@ var FormState = function FormState(rules) {
     throw new Error('Rules is a required argument');
   }
   this.rules = rules;
-  this.obj = obj;
+  this.obj = JSON.parse(JSON.stringify(obj));
   this.onChange = onChange;
 };
 
