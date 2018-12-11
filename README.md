@@ -1,3 +1,5 @@
+:warning: Deprecated! We found our library to be very similar to [Formik](https://github.com/jaredpalmer/formik). Formik has way more contributors than us. Given that, we are deprecating react-formify.
+
 [![Slack](http://alansouzati.github.io/artic/img/slack-badge.svg)](http://slackin.grommet.io)  [![Build Status](https://travis-ci.org/grommet/grommet-form.svg?branch=master)](https://travis-ci.org/grommet/react-formify) [![Test Coverage](https://codeclimate.com/github/grommet/grommet-form/badges/coverage.svg)](https://codeclimate.com/github/grommet/react-formify/coverage)  [![Dependency Status](https://david-dm.org/grommet/react-formify.svg)](https://david-dm.org/grommet/react-formify) [![devDependency Status](https://david-dm.org/grommet/react-formify/dev-status.svg)](https://david-dm.org/grommet/react-formify#info=devDependencies)
 
 # react-formify
